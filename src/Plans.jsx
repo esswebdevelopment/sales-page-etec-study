@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { trackCheckout } from "./pixel";
 
 const PRICE_PDF = 27;
 const PRICE_FULL = 37;
@@ -80,7 +81,11 @@ export default function Plans() {
             <p className="plan-note">
               Pagamento único. Ideal para estudar no papel.
             </p>
-            <a className="plan-cta" href={CHECKOUT.pdf}>
+            <a
+              className="plan-cta"
+              href={CHECKOUT.pdf}
+              onClick={() => trackCheckout("PDF", PRICE_PDF)}
+            >
               Quero só o PDF
             </a>
             <Features items={PDF_FEATURES} />
@@ -100,7 +105,11 @@ export default function Plans() {
               <p className="plan-note">
                 Pagamento único. Só R$ {PRICE_FULL - PRICE_PDF} a mais.
               </p>
-              <a className="plan-cta" href={CHECKOUT.full}>
+              <a
+                className="plan-cta"
+                href={CHECKOUT.full}
+                onClick={() => trackCheckout("PDF + Plataforma", PRICE_FULL)}
+              >
                 Quero o guia completo
               </a>
               <Features items={FULL_FEATURES} />
